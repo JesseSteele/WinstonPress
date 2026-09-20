@@ -39,13 +39,13 @@ type Coin struct {
 }
 
 func Find() string {
-	if p := os.Getenv("PDT_CONFIG"); p != "" {
+	if p := os.Getenv("WINSTONPRESS_CONFIG"); p != "" {
 		return p
 	}
 	cands := []string{
-		"/etc/pdt/config",
-		"/srv/www/pdt/config",
-		"/var/www/pdt/config",
+		"/etc/winstonpress/config",
+		"/srv/www/winstonpress/config",
+		"/var/www/winstonpress/config",
 		"config",
 		"config.sample",
 	}
@@ -70,7 +70,7 @@ func Load(path string) (*Config, error) {
 		Port:          "9001",
 		Mode:          "single",
 		MailTransport: "off",
-		WalletDir:     "/etc/pdt/wallet",
+		WalletDir:     "/etc/winstonpress/wallet",
 		Theme:         "masthead",
 		Coins:         map[string]Coin{},
 		Path:          path,

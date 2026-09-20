@@ -52,7 +52,7 @@ func (a Acc) Put(ev Event) (Event, error) {
 		return ev, nil
 	}
 	if ev.UID == "" {
-		ev.UID = fmt.Sprintf("pdt-%d", time.Now().UnixNano())
+		ev.UID = fmt.Sprintf("winstonpress-%d", time.Now().UnixNano())
 	}
 	href := ev.Href
 	if href == "" {

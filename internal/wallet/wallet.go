@@ -25,7 +25,7 @@ func Dir(cfg *config.Config) string {
 	if cfg.WalletDir != "" {
 		return cfg.WalletDir
 	}
-	return "/etc/pdt/wallet"
+	return "/etc/winstonpress/wallet"
 }
 
 func List(cfg *config.Config) []Row {
@@ -100,5 +100,5 @@ func lookup(ticker, addr string) (string, string) {
 }
 
 func NeverServe(path string) bool {
-	return strings.Contains(path, "/etc/pdt/") || strings.HasSuffix(path, ".key")
+	return strings.Contains(path, "/etc/winstonpress/") || strings.HasSuffix(path, ".key")
 }

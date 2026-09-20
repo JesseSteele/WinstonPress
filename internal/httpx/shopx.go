@@ -13,12 +13,12 @@ import (
 )
 
 func (s *Server) cartID(w http.ResponseWriter, r *http.Request) string {
-	c, err := r.Cookie("pdt_cart")
+	c, err := r.Cookie("winstonpress_cart")
 	if err == nil && c.Value != "" {
 		return c.Value
 	}
 	id := tok(16)
-	http.SetCookie(w, &http.Cookie{Name: "pdt_cart", Value: id, Path: "/", MaxAge: 86400 * 90, SameSite: http.SameSiteLaxMode})
+	http.SetCookie(w, &http.Cookie{Name: "winstonpress_cart", Value: id, Path: "/", MaxAge: 86400 * 90, SameSite: http.SameSiteLaxMode})
 	pool, _ := s.db()
 	if pool != nil {
 		var uid *int64

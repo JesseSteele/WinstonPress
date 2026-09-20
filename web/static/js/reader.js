@@ -1,5 +1,5 @@
 (function () {
-  var KEY = "pdt-reader";
+  var KEY = "winstonpress.reader";
   var st = {
     mode: document.documentElement.getAttribute("data-mode") || "white",
     font: "news", size: 18, cols: 0, width: "wide"

@@ -2,7 +2,7 @@
 <div class="dash">
 <nav class="tabs"><a href="/dash">Home</a><a href="/dash/wallet">Wallet</a></nav>
 <h1>Wallet</h1>
-<p class="hint">Keys never leave <code>/etc/pdt/wallet/</code> (mode 0700). Put <code>btc.key</code>, <code>eth.key</code>, … there. Addresses in config. Tarball installs still use that FHS path.</p>
+<p class="hint">Keys never leave <code>/etc/winstonpress/wallet/</code> (mode 0700). Put <code>btc.key</code>, <code>eth.key</code>, … there. Addresses in config. Tarball installs still use that FHS path.</p>
 <table class="grid">
 <tr><th>Coin</th><th>Address</th><th>Key on disk</th><th>Balance</th></tr>
 {{range .Data}}

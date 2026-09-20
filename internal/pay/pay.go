@@ -286,7 +286,7 @@ func PeriodEnd(n int, unit string) time.Time {
 }
 
 func do(req *http.Request) ([]byte, error) {
-	req.Header.Set("User-Agent", "pdt-pay")
+	req.Header.Set("User-Agent", "WinstonPress-pay")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err

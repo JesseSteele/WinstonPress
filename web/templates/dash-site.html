@@ -49,7 +49,7 @@
 
 <h2>Payment keys</h2>
 {{if index .Data "PayLocked"}}
-<p class="hint">Locked by SysAdmin config. Stripe/PayPal/crypto keys live in <code>/etc/pdt/config</code>.</p>
+<p class="hint">Locked by SysAdmin config. Stripe/PayPal/crypto keys live in <code>/etc/winstonpress/config</code>.</p>
 {{else}}
 <form method="post">
 <input type="hidden" name="act" value="pay">
@@ -58,7 +58,7 @@
 <p><label>PayPal client <input name="paypal_client_id"></label>
 <label>PayPal secret <input name="paypal_secret" type="password" autocomplete="off"></label>
 <label><input type="checkbox" name="paypal_sandbox" value="1"> sandbox</label></p>
-<p class="hint">Crypto receive addresses stay in config / <code>/etc/pdt/wallet/</code> — SysAdmin only.</p>
+<p class="hint">Crypto receive addresses stay in config / <code>/etc/winstonpress/wallet/</code> — SysAdmin only.</p>
 <p><button class="btn">Save keys</button></p>
 </form>
 {{end}}

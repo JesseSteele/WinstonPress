@@ -35,7 +35,7 @@ func Send(cfg *config.Config, to, subject, body string) error {
 
 func SendPDF(cfg *config.Config, to, subject, body string, pdf []byte, name string) error {
 	from := cfg.MailFrom
-	bound := "pdtbound"
+	bound := "winstonpressbound"
 	var b strings.Builder
 	b.WriteString("From: " + cfg.MailName + " <" + from + ">\r\n")
 	b.WriteString("To: " + to + "\r\n")

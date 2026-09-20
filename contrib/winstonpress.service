@@ -6,10 +6,10 @@ After=network.target postgresql.service
 Type=simple
 User=www
 Group=www
-WorkingDirectory=/srv/www/pdt
-ExecStart=/usr/bin/pdt
+WorkingDirectory=/srv/www/winstonpress
+ExecStart=/usr/bin/winstonpress
 Restart=on-failure
-Environment=PDT_CONFIG=/etc/pdt/config
+Environment=WINSTONPRESS_CONFIG=/etc/winstonpress/config
 
 [Install]
 WantedBy=multi-user.target

@@ -1,6 +1,6 @@
 # Winston Press SysAdmin config
-# Package install: live file is /etc/pdt/config (symlinked from /srv/www/pdt/config or /var/www/pdt/config).
-# Tarball: copy this next to the binary as "config", or set PDT_CONFIG.
+# Package install: live file is /etc/winstonpress/config (symlinked from /srv/www/winstonpress/config or /var/www/winstonpress/config).
+# Tarball: copy this next to the binary as "config", or set WINSTONPRESS_CONFIG.
 # Nothing in this file is served over HTTP.
 
 # --- bind ---
@@ -17,8 +17,8 @@ web_url=https://localhost
 # --- postgres ---
 db_host=127.0.0.1
 db_port=5432
-db_name=pdt
-db_user=pdt
+db_name=winstonpress
+db_user=winstonpress
 db_pass=change-me
 
 # --- mode ---
@@ -56,10 +56,10 @@ mail_from_name=Winston Press
 # paypal_secret=
 # paypal_sandbox=false
 
-# --- crypto keys live ONLY under /etc/pdt/wallet/ (mode 0700, files 0600).
+# --- crypto keys live ONLY under /etc/winstonpress/wallet/ (mode 0700, files 0600).
 # Tarball installs: the SysAdmin creates that directory on the FHS even if the app itself lives in a folder.
-# wallet_dir=/etc/pdt/wallet
-# Each coin is ticker=address and optional ticker_key=/etc/pdt/wallet/TICKER.key (WIF, hex, or mnemonic line).
+# wallet_dir=/etc/winstonpress/wallet
+# Each coin is ticker=address and optional ticker_key=/etc/winstonpress/wallet/TICKER.key (WIF, hex, or mnemonic line).
 # Coins we know how to display (add more as ticker=address):
 # btc=
 # eth=
@@ -87,7 +87,7 @@ theme=masthead
 # oauth_github_id=
 # oauth_github_secret=
 
-# pdt as an OAuth provider for badAd ("Login with pdt"):
+# Winston Press as an OAuth provider for badAd ("Login with Winston Press"):
 # oauth_client_id=badad
 # oauth_client_secret=change-me
 

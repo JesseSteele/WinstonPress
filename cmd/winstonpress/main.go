@@ -19,7 +19,7 @@ func main() {
 			log.Fatal(err)
 		}
 	} else {
-		cfg = &config.Config{Bind: "127.0.0.1", Port: "9001", Mode: "single", MailTransport: "off", WalletDir: "/etc/pdt/wallet", Theme: "masthead"}
+		cfg = &config.Config{Bind: "127.0.0.1", Port: "9001", Mode: "single", MailTransport: "off", WalletDir: "/etc/winstonpress/wallet", Theme: "masthead"}
 	}
 	root := findRoot()
 	log.Printf("Winston Press listening %s  config=%s  mode=%s", cfg.Addr(), cfgPath, cfg.Mode)

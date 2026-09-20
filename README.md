@@ -74,13 +74,13 @@ CalDAV is a **client**, like iOS Calendar or DAVx⁵. Connect **Apple iCloud** (
 
 Dash → Site: look (round/square corners), SEO (title, description, image, robots — same idea as 501 `in.head.php`), social (site-wide; authors have their own on Bio), menus (up/down, places above/below post, page, landing, series, shop, department, product), feature toggles, payment keys.
 
-**SysAdmin config wins.** If `stripe_secret=` is in `/etc/pdt/config`, the dashboard key fields lock. If it is empty, a friendly single-blog admin fills them in the dash. Feature flags: empty = site admin may toggle; `0`/`1` locks them.
+**SysAdmin config wins.** If `stripe_secret=` is in `/etc/winstonpress/config`, the dashboard key fields lock. If it is empty, a friendly single-blog admin fills them in the dash. Feature flags: empty = site admin may toggle; `0`/`1` locks them.
 
 badAd is the other way around: keys live only in config. That product is a wide network with a powerful SysAdmin.
 
 ## Money
 
-Stripe / PayPal: one-time **or** auto-renewing memberships/subscriptions. Crypto: prepaid, **never** renews. US destination tax. Invoices email + PDF. Crypto keys only in `/etc/pdt/wallet/` (0700).
+Stripe / PayPal: one-time **or** auto-renewing memberships/subscriptions. Crypto: prepaid, **never** renews. US destination tax. Invoices email + PDF. Crypto keys only in `/etc/winstonpress/wallet/` (0700).
 
 ## Reader
 
@@ -88,7 +88,7 @@ Stripe / PayPal: one-time **or** auto-renewing memberships/subscriptions. Crypto
 
 ## Themes
 
-Layout is `web/static/css/pdt.css` (mast, nav, cards, thread). A theme is one file in `web/static/css/themes/{name}.css`. Drop a file, it appears in Dash → Site. The file may only set CSS variables and the `theme-` hooks (`.theme-cta`, `.theme-mark`). No new navigation. Visitors already know header / feed / post.
+Layout is `web/static/css/winstonpress.css` (mast, nav, cards, thread). A theme is one file in `web/static/css/themes/{name}.css`. Drop a file, it appears in Dash → Site. The file may only set CSS variables and the `theme-` hooks (`.theme-cta`, `.theme-mark`). No new navigation. Visitors already know header / feed / post.
 
 Shipped: `masthead`, `night`, `ink`, `paper`, `wire`, `markets`.
 
@@ -100,12 +100,12 @@ Email code + link. Optional password. Authenticator. Google / Apple / GitHub. In
 ## Install
 
 ```
-go build -o pdt ./cmd/pdt
-./pdt
+go build -o winstonpress ./cmd/winstonpress
+./winstonpress
 # open /install
 ```
 
-Packages: [pdt-news-package](https://github.com/PacificDailyTimes/pdt-news-package) (Arch/Debian/RPM). Config: `/etc/pdt/config`, symlinked from `/srv/www/pdt/config`. Nginx: `contrib/nginx/pdt.conf`. Installer: `contrib/pdt-install` (`--webroot` sets destination; interactive does not ask for it).
+Packages: package builders (Arch/Debian/RPM). Config: `/etc/winstonpress/config`, symlinked from `/srv/www/winstonpress/config`. Nginx: `contrib/nginx/winstonpress.conf`. Installer: `contrib/install` (`--webroot` sets destination; interactive does not ask for it).
 
 On Verb the machine name is `vapps/winstonpress.DOMAIN.TLD`; the public host is the domain itself. BIMI is served at `https://domain.tld/bimi.svg`.
 `ink install winstonpress -d domain.tld`.

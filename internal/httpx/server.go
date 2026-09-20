@@ -159,7 +159,7 @@ func (s *Server) render(w http.ResponseWriter, name string, data any) {
 }
 
 func (s *Server) user(r *http.Request) *db.User {
-	c, err := r.Cookie("pdt")
+	c, err := r.Cookie("winstonpress")
 	if err != nil || s.cfg.DBName == "" {
 		return nil
 	}
@@ -182,7 +182,7 @@ func (s *Server) setSession(w http.ResponseWriter, uid int64) {
 	t := tok(24)
 	_, _ = pool.Exec(context.Background(),
 		`INSERT INTO sessions(token,user_id,expires) VALUES($1,$2,now()+interval '14 days')`, t, uid)
-	http.SetCookie(w, &http.Cookie{Name: "pdt", Value: t, Path: "/", HttpOnly: true, SameSite: http.SameSiteLaxMode, MaxAge: 14 * 86400})
+	http.SetCookie(w, &http.Cookie{Name: "winstonpress", Value: t, Path: "/", HttpOnly: true, SameSite: http.SameSiteLaxMode, MaxAge: 14 * 86400})
 }
 
 type page struct {
@@ -377,12 +377,12 @@ func (s *Server) magic(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) logout(w http.ResponseWriter, r *http.Request) {
-	if c, err := r.Cookie("pdt"); err == nil {
+	if c, err := r.Cookie("winstonpress"); err == nil {
 		if pool, e := s.db(); e == nil {
 			_, _ = pool.Exec(context.Background(), `DELETE FROM sessions WHERE token=$1`, c.Value)
 		}
 	}
-	http.SetCookie(w, &http.Cookie{Name: "pdt", Value: "", Path: "/", MaxAge: -1})
+	http.SetCookie(w, &http.Cookie{Name: "winstonpress", Value: "", Path: "/", MaxAge: -1})
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 

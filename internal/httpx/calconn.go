@@ -99,7 +99,7 @@ func (s *Server) applyRemote(calID int64, remote []caldav.Event) {
 			continue
 		}
 		seen[e.UID] = e
-		bid := pdtBookingID(e.UID)
+		bid := winstonpressBookingID(e.UID)
 		if bid < 1 {
 			continue
 		}
@@ -133,12 +133,12 @@ func parseLocal(s string) time.Time {
 	return time.Time{}
 }
 
-func pdtBookingID(uid string) int64 {
+func winstonpressBookingID(uid string) int64 {
 	u := strings.TrimSpace(uid)
-	u = strings.TrimSuffix(u, "@pdt")
-	if !strings.HasPrefix(u, "pdt-") {
+	u = strings.TrimSuffix(u, "@winstonpress")
+	if !strings.HasPrefix(u, "winstonpress-") {
 		return 0
 	}
-	n, _ := strconv.ParseInt(strings.TrimPrefix(u, "pdt-"), 10, 64)
+	n, _ := strconv.ParseInt(strings.TrimPrefix(u, "winstonpress-"), 10, 64)
 	return n
 }

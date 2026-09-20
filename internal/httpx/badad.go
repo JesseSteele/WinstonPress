@@ -20,11 +20,11 @@ func (s *Server) dashBadAd(w http.ResponseWriter, r *http.Request) {
 		_ = r.ParseForm()
 		if r.FormValue("link") == "1" && s.cfg.BadAdURL != "" {
 			st := tok(12)
-			http.SetCookie(w, &http.Cookie{Name: "pdt_badad", Value: st, Path: "/", HttpOnly: true, MaxAge: 600})
+			http.SetCookie(w, &http.Cookie{Name: "winstonpress_badad", Value: st, Path: "/", HttpOnly: true, MaxAge: 600})
 			cb := strings.TrimRight(s.cfg.URL, "/") + "/dash/badad"
 			q := url.Values{"client_id": {s.cfg.OAuthClientID}, "redirect_uri": {cb}, "response_type": {"code"}, "state": {st}}
-			// Login-with-pdt is initiated FROM badAd; here we send the user to badAd's link-pdt endpoint
-			http.Redirect(w, r, s.cfg.BadAdURL+"/login/pdt?from=pdt&"+q.Encode(), http.StatusSeeOther)
+			// Login-with-Winston-Press is initiated FROM badAd; here we send the user to badAd's link-winstonpress endpoint
+			http.Redirect(w, r, s.cfg.BadAdURL+"/login/winstonpress?from=winstonpress&"+q.Encode(), http.StatusSeeOther)
 			return
 		}
 		if r.FormValue("mint") == "1" {
@@ -34,8 +34,8 @@ func (s *Server) dashBadAd(w http.ResponseWriter, r *http.Request) {
 				 ON CONFLICT (user_id) DO UPDATE SET pub_key=EXCLUDED.pub_key, sec_key=EXCLUDED.sec_key, linked_at=now()`,
 				u.ID, pub, sec)
 			if s.cfg.BadAdURL != "" {
-				go postJSON(s.cfg.BadAdURL+"/api/pdt/keys", map[string]string{
-					"pdt_user": strconv.FormatInt(u.ID, 10), "pub": pub, "sec": sec, "secret": s.cfg.OAuthClientSecret,
+				go postJSON(s.cfg.BadAdURL+"/api/winstonpress/keys", map[string]string{
+					"winstonpress_user": strconv.FormatInt(u.ID, 10), "pub": pub, "sec": sec, "secret": s.cfg.OAuthClientSecret,
 				})
 			}
 		}

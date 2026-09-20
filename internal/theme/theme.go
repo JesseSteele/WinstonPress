@@ -1,6 +1,6 @@
 // Package theme lists drop-in CSS files.
 //
-// Layout lives in pdt.css (mast, wrap, deck, card, thread, dash).
+// Layout lives in winstonpress.css (mast, wrap, deck, card, thread, dash).
 // A theme file may only set CSS variables and the theme- hooks:
 //
 //	.theme-cta   buttons and landing CTAs

@@ -22,15 +22,15 @@ func (s *Server) authStart(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	st := tok(16)
-	http.SetCookie(w, &http.Cookie{Name: "pdt_oauth", Value: st, Path: "/", HttpOnly: true, MaxAge: 600, SameSite: http.SameSiteLaxMode})
+	http.SetCookie(w, &http.Cookie{Name: "winstonpress_oauth", Value: st, Path: "/", HttpOnly: true, MaxAge: 600, SameSite: http.SameSiteLaxMode})
 	if r.URL.Query().Get("link") == "1" {
-		http.SetCookie(w, &http.Cookie{Name: "pdt_oauth_link", Value: "1", Path: "/", HttpOnly: true, MaxAge: 600})
+		http.SetCookie(w, &http.Cookie{Name: "winstonpress_oauth_link", Value: "1", Path: "/", HttpOnly: true, MaxAge: 600})
 	}
 	cb := strings.TrimRight(s.cfg.URL, "/") + "/auth/" + p + "/callback"
 	var u string
 	var err error
 	if r.URL.Query().Get("cal") == "1" {
-		http.SetCookie(w, &http.Cookie{Name: "pdt_oauth_cal", Value: "1", Path: "/", HttpOnly: true, MaxAge: 600})
+		http.SetCookie(w, &http.Cookie{Name: "winstonpress_oauth_cal", Value: "1", Path: "/", HttpOnly: true, MaxAge: 600})
 		u, err = oauth.GoogleCalStart(s.cfg, st, cb)
 	} else {
 		u, err = oauth.StartURL(s.cfg, p, st, cb)
@@ -43,14 +43,14 @@ func (s *Server) authStart(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) authCallback(w http.ResponseWriter, r *http.Request, provider string) {
-	c, _ := r.Cookie("pdt_oauth")
+	c, _ := r.Cookie("winstonpress_oauth")
 	if c == nil || c.Value != r.URL.Query().Get("state") {
 		http.Error(w, "state", 400)
 		return
 	}
 	cb := strings.TrimRight(s.cfg.URL, "/") + "/auth/" + provider + "/callback"
-	if lc, err := r.Cookie("pdt_oauth_cal"); err == nil && lc.Value == "1" {
-		http.SetCookie(w, &http.Cookie{Name: "pdt_oauth_cal", Value: "", Path: "/", MaxAge: -1})
+	if lc, err := r.Cookie("winstonpress_oauth_cal"); err == nil && lc.Value == "1" {
+		http.SetCookie(w, &http.Cookie{Name: "winstonpress_oauth_cal", Value: "", Path: "/", MaxAge: -1})
 		s.googleCalCallback(w, r, cb)
 		return
 	}
@@ -65,7 +65,7 @@ func (s *Server) authCallback(w http.ResponseWriter, r *http.Request, provider s
 		return
 	}
 	link := false
-	if lc, err := r.Cookie("pdt_oauth_link"); err == nil && lc.Value == "1" {
+	if lc, err := r.Cookie("winstonpress_oauth_link"); err == nil && lc.Value == "1" {
 		link = true
 	}
 	if link {
@@ -121,7 +121,7 @@ func (s *Server) authCallback(w http.ResponseWriter, r *http.Request, provider s
 	}
 	if u.TOTPOn {
 		t := tok(12)
-		http.SetCookie(w, &http.Cookie{Name: "pdt_2fa", Value: fmt.Sprintf("%d:%s", uid, t), Path: "/", HttpOnly: true, MaxAge: 300})
+		http.SetCookie(w, &http.Cookie{Name: "winstonpress_2fa", Value: fmt.Sprintf("%d:%s", uid, t), Path: "/", HttpOnly: true, MaxAge: 300})
 		http.Redirect(w, r, "/login?totp=1", http.StatusSeeOther)
 		return
 	}

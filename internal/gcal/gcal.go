@@ -60,7 +60,7 @@ func (c *Client) Put(ev caldav.Event) (caldav.Event, error) {
 		Start:   gTime{DateTime: ev.Start.Format(time.RFC3339)},
 		End:     gTime{DateTime: ev.End.Format(time.RFC3339)},
 		ICalUID: ev.UID,
-		Ext:     gExt{Private: map[string]string{"pdt_uid": ev.UID}},
+		Ext:     gExt{Private: map[string]string{"winstonpress_uid": ev.UID}},
 	})
 	path := "https://www.googleapis.com/calendar/v3/calendars/" + c.cal() + "/events"
 	method := http.MethodPost
@@ -150,8 +150,8 @@ type gEvent struct {
 
 func (g gEvent) event() caldav.Event {
 	uid := g.ICalUID
-	if g.Ext.Private != nil && g.Ext.Private["pdt_uid"] != "" {
-		uid = g.Ext.Private["pdt_uid"]
+	if g.Ext.Private != nil && g.Ext.Private["winstonpress_uid"] != "" {
+		uid = g.Ext.Private["winstonpress_uid"]
 	}
 	return caldav.Event{
 		UID: uid, Href: g.ID, Summary: g.Summary,

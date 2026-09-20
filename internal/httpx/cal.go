@@ -217,7 +217,7 @@ func (s *Server) pubCal(w http.ResponseWriter, r *http.Request, slug string) {
 		_, _ = pool.Exec(context.Background(), `UPDATE bookings SET status='booked' WHERE id=$1`, bid)
 		if conn.kind != "" || conn.dav.URL != "" || conn.g != nil {
 			ev, err := conn.Put(caldav.Event{
-				UID:     fmt.Sprintf("pdt-%d@pdt", bid),
+				UID:     fmt.Sprintf("winstonpress-%d@winstonpress", bid),
 				Start:   start,
 				End:     end,
 				Summary: name,
