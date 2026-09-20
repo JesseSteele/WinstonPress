@@ -5,8 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/config"
-	"github.com/PacificDailyTimes/pdt-news/internal/httpx"
+	"github.com/JesseSteele/WinstonPress/internal/config"
+	"github.com/JesseSteele/WinstonPress/internal/httpx"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 		cfg = &config.Config{Bind: "127.0.0.1", Port: "9001", Mode: "single", MailTransport: "off", WalletDir: "/etc/pdt/wallet", Theme: "masthead"}
 	}
 	root := findRoot()
-	log.Printf("pdt-news listening %s  config=%s  mode=%s", cfg.Addr(), cfgPath, cfg.Mode)
+	log.Printf("Winston Press listening %s  config=%s  mode=%s", cfg.Addr(), cfgPath, cfg.Mode)
 	if err := httpx.Listen(cfg, root); err != nil {
 		log.Fatal(err)
 	}

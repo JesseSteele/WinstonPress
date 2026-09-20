@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{if .SEOTitle}}{{.SEOTitle}}{{else if .Title}}{{.Title}} · {{end}}{{if .Site}}{{index .Site "name"}}{{else}}pdt-news{{end}}</title>
+<title>{{if .SEOTitle}}{{.SEOTitle}}{{else if .Title}}{{.Title}} · {{end}}{{if .Site}}{{index .Site "name"}}{{else}}Winston Press{{end}}</title>
 {{if .SEODesc}}<meta name="description" content="{{.SEODesc}}">{{end}}
 <meta name="robots" content="{{if .Robots}}{{.Robots}}{{else}}index,follow{{end}}">
 {{if .Canonical}}<link rel="canonical" href="{{.Canonical}}">{{end}}
@@ -20,7 +20,7 @@
 <a class="skip" href="#content">Skip to content</a>
 <header class="mast">
   <div class="mast-inner">
-    <a class="mark theme-mark" href="/">{{if .Site}}{{index .Site "name"}}{{else}}pdt-news{{end}}</a>
+    <a class="mark theme-mark" href="/">{{if .Site}}{{index .Site "name"}}{{else}}Winston Press{{end}}</a>
     {{if .Site}}{{if index .Site "tagline"}}<p class="kick">{{index .Site "tagline"}}</p>{{end}}{{end}}
     <nav>
       {{range .HeaderNav}}<a href="{{.Href}}" class="nav-{{.Kind}}">{{.Label}}</a>{{else}}

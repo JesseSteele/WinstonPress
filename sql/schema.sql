@@ -1,4 +1,4 @@
--- pdt-news PostgreSQL schema
+-- Winston Press PostgreSQL schema
 CREATE TABLE IF NOT EXISTS meta (
   k TEXT PRIMARY KEY,
   v TEXT NOT NULL

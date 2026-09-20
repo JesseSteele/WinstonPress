@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/flags"
-	"github.com/PacificDailyTimes/pdt-news/internal/pay"
-	"github.com/PacificDailyTimes/pdt-news/internal/theme"
+	"github.com/JesseSteele/WinstonPress/internal/flags"
+	"github.com/JesseSteele/WinstonPress/internal/pay"
+	"github.com/JesseSteele/WinstonPress/internal/theme"
 )
 
 func (s *Server) setting(k string) string {

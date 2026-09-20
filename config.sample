@@ -1,4 +1,4 @@
-# pdt-news SysAdmin config
+# Winston Press SysAdmin config
 # Package install: live file is /etc/pdt/config (symlinked from /srv/www/pdt/config or /var/www/pdt/config).
 # Tarball: copy this next to the binary as "config", or set PDT_CONFIG.
 # Nothing in this file is served over HTTP.
@@ -38,7 +38,7 @@ mail_transport=mail
 # mail_transport=smtp
 # mail_transport=off
 mail_from=noreply@localhost
-mail_from_name=pdt-news
+mail_from_name=Winston Press
 # smtp_host=127.0.0.1
 # smtp_port=587
 # smtp_user=

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/db"
-	"github.com/PacificDailyTimes/pdt-news/internal/oauth"
+	"github.com/JesseSteele/WinstonPress/internal/db"
+	"github.com/JesseSteele/WinstonPress/internal/oauth"
 )
 
 func (s *Server) authStart(w http.ResponseWriter, r *http.Request) {

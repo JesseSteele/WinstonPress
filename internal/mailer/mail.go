@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/config"
+	"github.com/JesseSteele/WinstonPress/internal/config"
 )
 
 func Send(cfg *config.Config, to, subject, body string) error {

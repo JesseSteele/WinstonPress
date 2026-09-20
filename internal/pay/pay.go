@@ -1,4 +1,4 @@
-// Package pay is the one checkout workflow for pdt-news and (copied) badAd.
+// Package pay is the one checkout workflow for Winston Press and (copied) badAd.
 //
 //	Stripe  — one-time (Checkout payment) or auto-renewing subscription
 //	PayPal  — one-time (Orders) or auto-renewing subscription

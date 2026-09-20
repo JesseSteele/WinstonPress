@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/caldav"
-	"github.com/PacificDailyTimes/pdt-news/internal/config"
+	"github.com/JesseSteele/WinstonPress/internal/caldav"
+	"github.com/JesseSteele/WinstonPress/internal/config"
 )
 
 type Client struct {

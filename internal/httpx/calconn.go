@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/caldav"
-	"github.com/PacificDailyTimes/pdt-news/internal/gcal"
-	"github.com/PacificDailyTimes/pdt-news/internal/oauth"
+	"github.com/JesseSteele/WinstonPress/internal/caldav"
+	"github.com/JesseSteele/WinstonPress/internal/gcal"
+	"github.com/JesseSteele/WinstonPress/internal/oauth"
 )
 
 type calConn struct {

@@ -1,5 +1,5 @@
 [Unit]
-Description=pdt-news CMS
+Description=Winston Press CMS
 After=network.target postgresql.service
 
 [Service]

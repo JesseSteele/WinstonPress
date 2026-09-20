@@ -220,7 +220,7 @@ func ParseICS(s string) [][2]time.Time {
 }
 
 func ics(ev Event) string {
-	return "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//pdt-news//EN\r\nBEGIN:VEVENT\r\n" +
+	return "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Winston Press//EN\r\nBEGIN:VEVENT\r\n" +
 		"UID:" + ev.UID + "\r\n" +
 		"DTSTAMP:" + time.Now().UTC().Format("20060102T150405Z") + "\r\n" +
 		"DTSTART:" + ev.Start.UTC().Format("20060102T150405Z") + "\r\n" +

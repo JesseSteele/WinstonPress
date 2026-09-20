@@ -18,13 +18,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/agg"
-	"github.com/PacificDailyTimes/pdt-news/internal/config"
-	"github.com/PacificDailyTimes/pdt-news/internal/db"
-	"github.com/PacificDailyTimes/pdt-news/internal/flags"
-	"github.com/PacificDailyTimes/pdt-news/internal/mailer"
-	"github.com/PacificDailyTimes/pdt-news/internal/totp"
-	"github.com/PacificDailyTimes/pdt-news/internal/wallet"
+	"github.com/JesseSteele/WinstonPress/internal/agg"
+	"github.com/JesseSteele/WinstonPress/internal/config"
+	"github.com/JesseSteele/WinstonPress/internal/db"
+	"github.com/JesseSteele/WinstonPress/internal/flags"
+	"github.com/JesseSteele/WinstonPress/internal/mailer"
+	"github.com/JesseSteele/WinstonPress/internal/totp"
+	"github.com/JesseSteele/WinstonPress/internal/wallet"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -208,7 +208,7 @@ func (s *Server) base(r *http.Request, title string) page {
 		err := pool.QueryRow(context.Background(),
 			`SELECT name, tagline, theme FROM sites WHERE is_main=true LIMIT 1`).Scan(&name, &tagline, &theme)
 		if err != nil {
-			name, theme = "pdt-news", p.Theme
+			name, theme = "Winston Press", p.Theme
 		}
 		p.Site = map[string]any{"name": name, "tagline": tagline, "theme": theme}
 		if theme != "" {
@@ -244,7 +244,7 @@ func (s *Server) install(w http.ResponseWriter, r *http.Request) {
 		"mode":           val(r, "mode", "single"),
 		"mail_transport": val(r, "mail_transport", "off"),
 		"mail_from":      r.FormValue("mail_from"),
-		"mail_from_name": val(r, "mail_from_name", "pdt-news"),
+		"mail_from_name": val(r, "mail_from_name", "Winston Press"),
 		"theme":          "masthead",
 	}
 	cfgPath := s.cfg.Path
@@ -291,7 +291,7 @@ func (s *Server) install(w http.ResponseWriter, r *http.Request) {
 	}
 	_, _ = pool.Exec(context.Background(),
 		`INSERT INTO sites(slug,name,tagline,is_main) VALUES('main',$1,$2,true)`,
-		val(r, "site_name", "pdt-news"), val(r, "tagline", ""))
+		val(r, "site_name", "Winston Press"), val(r, "tagline", ""))
 	var sid int64
 	_ = pool.QueryRow(context.Background(), `SELECT id FROM sites WHERE is_main=true`).Scan(&sid)
 	_, _ = pool.Exec(context.Background(), `INSERT INTO site_members(site_id,user_id,can_post) VALUES($1,$2,true)`, sid, uid)
@@ -841,7 +841,7 @@ func (s *Server) security(w http.ResponseWriter, r *http.Request) {
 	p := s.base(r, "Security")
 	uri := ""
 	if u.TOTP != nil {
-		uri = totp.URI(*u.TOTP, u.LoginID, "pdt-news")
+		uri = totp.URI(*u.TOTP, u.LoginID, "Winston Press")
 	}
 	p.Data = map[string]any{"User": u, "URI": uri}
 	s.render(w, "security.html", p)
@@ -890,7 +890,7 @@ func simplePDF(num, title string, price, taxc int) []byte {
 		return s
 	}
 	text := fmt.Sprintf("BT /F1 18 Tf 72 720 Td (%s) Tj T* /F1 12 Tf (%s) Tj T* (Item: %s) Tj T* (Subtotal: $%.2f) Tj T* (Tax: $%.2f) Tj T* (Total: $%.2f) Tj ET",
-		esc(num), esc("pdt-news invoice"), esc(title), float64(price)/100, float64(taxc)/100, float64(price+taxc)/100)
+		esc(num), esc("Winston Press invoice"), esc(title), float64(price)/100, float64(taxc)/100, float64(price+taxc)/100)
 	stream := text
 	body := fmt.Sprintf("%%PDF-1.1\n1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj\n2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj\n3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj\n4 0 obj<< /Length %d >>stream\n%s\nendstream\nendobj\n5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>endobj\nxref\n0 6\n0000000000 65535 f \ntrailer<< /Size 6 /Root 1 0 R >>\nstartxref\n0\n%%%%EOF", len(stream), stream)
 	return []byte(body)
@@ -931,7 +931,7 @@ func (s *Server) feed(kind string) http.HandlerFunc {
 		}
 		if kind == "atom" {
 			w.Header().Set("Content-Type", "application/atom+xml")
-			fmt.Fprintf(w, `<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>pdt-news</title>`)
+			fmt.Fprintf(w, `<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Winston Press</title>`)
 			for _, it := range items {
 				fmt.Fprintf(w, `<entry><title>%s</title><link href="%s"/><updated>%s</updated><summary>%s</summary></entry>`,
 					xmlEsc(it["Title"]), xmlEsc(it["Link"]), xmlEsc(it["Pub"]), xmlEsc(it["Excerpt"]))
@@ -940,7 +940,7 @@ func (s *Server) feed(kind string) http.HandlerFunc {
 			return
 		}
 		w.Header().Set("Content-Type", "application/rss+xml")
-		fmt.Fprintf(w, `<?xml version="1.0"?><rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"><channel><title>pdt-news</title><link>%s</link>`, xmlEsc(s.cfg.URL))
+		fmt.Fprintf(w, `<?xml version="1.0"?><rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"><channel><title>Winston Press</title><link>%s</link>`, xmlEsc(s.cfg.URL))
 		for _, it := range items {
 			fmt.Fprintf(w, `<item><title>%s</title><link>%s</link><pubDate>%s</pubDate><description>%s</description>`,
 				xmlEsc(it["Title"]), xmlEsc(it["Link"]), xmlEsc(it["Pub"]), xmlEsc(it["Excerpt"]))
@@ -982,7 +982,7 @@ func (s *Server) pub(w http.ResponseWriter, r *http.Request) {
 	}
 	pool, err := s.db()
 	if err != nil {
-		s.render(w, "home.html", s.base(r, "pdt-news"))
+		s.render(w, "home.html", s.base(r, "Winston Press"))
 		return
 	}
 	if !db.Installed(pool) && pth == "" {

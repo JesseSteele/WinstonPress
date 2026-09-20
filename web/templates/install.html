@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" data-mode="white"><head>
-<meta charset="utf-8"><title>Install pdt-news</title>
+<meta charset="utf-8"><title>Install Winston Press</title>
 <link rel="stylesheet" href="/static/css/pdt.css">
 </head><body class="theme-masthead">
 <div class="wrap slim">
-<h1>Install pdt-news</h1>
+<h1>Install Winston Press</h1>
 <p class="lede">Passwordless by default. PostgreSQL over TCP (<code>127.0.0.1</code>).</p>
 {{if .Err}}<p class="flash bad">{{.Err}}</p>{{end}}
 <form method="post">
 {{if .NeedPass}}<p><label>Setup password <input type="password" name="setup_password"></label></p>{{end}}
 <h2>Site</h2>
 <p><label>Public URL <input name="web_url" placeholder="https://example.tld" required></label></p>
-<p><label>Name <input name="site_name" value="pdt-news"></label>
+<p><label>Name <input name="site_name" value="Winston Press"></label>
 <label>Tagline <input name="tagline"></label></p>
 <p><label>Mode
 <select name="mode">

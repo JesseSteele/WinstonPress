@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/caldav"
-	"github.com/PacificDailyTimes/pdt-news/internal/pay"
+	"github.com/JesseSteele/WinstonPress/internal/caldav"
+	"github.com/JesseSteele/WinstonPress/internal/pay"
 )
 
 func (s *Server) dashCal(w http.ResponseWriter, r *http.Request) {
@@ -256,7 +256,7 @@ func (s *Server) ics(w http.ResponseWriter, r *http.Request, slug string) {
 	rows, _ := pool.Query(context.Background(),
 		`SELECT starts,ends,coalesce(note,'') FROM bookings WHERE calendar_id=$1 AND status IN ('booked','held') ORDER BY starts`, id)
 	w.Header().Set("Content-Type", "text/calendar")
-	fmt.Fprint(w, "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//pdt-news//EN\r\n")
+	fmt.Fprint(w, "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Winston Press//EN\r\n")
 	for rows.Next() {
 		var a, b time.Time
 		var note string

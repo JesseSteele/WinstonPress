@@ -1,10 +1,10 @@
 #!/bin/bash
-# pdt-news installer. Same script in the package trees and in the app contrib/.
+# Winston Press installer. Same script in the package trees and in the app contrib/.
 # Passwordless by default (no setup_password).
 #
 # Destination is --webroot (or the commented default). Interactive does not ask for it.
-# Verb: --webroot /srv/www/vapps/pdt.DOMAIN --config /opt/verb/conf/vapps/pdt.DOMAIN.config --nginx-server-name DOMAIN
-# Machine name is pdt.DOMAIN. BIMI is at /bimi.svg.
+# Verb: --webroot /srv/www/vapps/winstonpress.DOMAIN --config /opt/verb/conf/vapps/winstonpress.DOMAIN.config --nginx-server-name DOMAIN
+# Machine name is winstonpress.DOMAIN.
 #
 #   sudo bash pdt-install
 #   sudo bash pdt-install --db-name pdt --db-user pdt --db-pass secret --url https://example.tld --mode network
@@ -148,7 +148,7 @@ if command -v systemctl >/dev/null && [ -d /etc/systemd/system ]; then
   id http >/dev/null 2>&1 && RUN_USER=http
   cat > /etc/systemd/system/pdt.service <<EOF
 [Unit]
-Description=pdt-news CMS
+Description=Winston Press CMS
 After=network.target postgresql.service
 
 [Service]

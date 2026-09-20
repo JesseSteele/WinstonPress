@@ -1,4 +1,4 @@
-module github.com/PacificDailyTimes/pdt-news
+module github.com/JesseSteele/WinstonPress
 
 go 1.22
 

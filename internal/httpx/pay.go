@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/mailer"
-	"github.com/PacificDailyTimes/pdt-news/internal/pay"
-	"github.com/PacificDailyTimes/pdt-news/internal/tax"
+	"github.com/JesseSteele/WinstonPress/internal/mailer"
+	"github.com/JesseSteele/WinstonPress/internal/pay"
+	"github.com/JesseSteele/WinstonPress/internal/tax"
 )
 
 func (s *Server) checkout(w http.ResponseWriter, r *http.Request) {

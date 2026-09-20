@@ -2,7 +2,7 @@
 <div class="dash">
 <nav class="tabs"><a href="/dash">Home</a><a href="/dash/cal">{{.BookWord}}</a></nav>
 <h1>Calendars</h1>
-<p class="hint">pdt-news is a calendar <em>client</em>, same job as iOS Calendar or DAVx⁵. The host is Apple iCloud, Google Calendar, or your CalDAV (Nextcloud/ownCloud/Fastmail). Bookings and events live on that host. Phones already connected to it see everything.</p>
+<p class="hint">Winston Press is a calendar <em>client</em>, same job as iOS Calendar or DAVx⁵. The host is Apple iCloud, Google Calendar, or your CalDAV (Nextcloud/ownCloud/Fastmail). Bookings and events live on that host. Phones already connected to it see everything.</p>
 
 <h2>Connect</h2>
 <p>{{if index .Data "GoogleOn"}}<a class="btn theme-cta" href="/auth/google?cal=1">Connect Google Calendar</a>{{else}}<span class="hint">Set oauth_google_id / oauth_google_secret in config to connect Google.</span>{{end}}</p>

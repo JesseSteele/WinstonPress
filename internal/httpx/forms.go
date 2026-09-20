@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/mailer"
+	"github.com/JesseSteele/WinstonPress/internal/mailer"
 )
 
 func (s *Server) dashForms(w http.ResponseWriter, r *http.Request) {

@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/config"
+	"github.com/JesseSteele/WinstonPress/internal/config"
 )
 
 type Profile struct {
@@ -187,7 +187,7 @@ func getJSON(u, token string) (map[string]any, error) {
 	req, _ := http.NewRequest("GET", u, nil)
 	req.Header.Set("Authorization", "Bearer "+token)
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", "pdt-news")
+	req.Header.Set("User-Agent", "Winston Press")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err
@@ -203,7 +203,7 @@ func getJSONArr(u, token string) ([]map[string]any, error) {
 	req, _ := http.NewRequest("GET", u, nil)
 	req.Header.Set("Authorization", "Bearer "+token)
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", "pdt-news")
+	req.Header.Set("User-Agent", "Winston Press")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err

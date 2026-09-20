@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/pay"
-	"github.com/PacificDailyTimes/pdt-news/internal/tax"
+	"github.com/JesseSteele/WinstonPress/internal/pay"
+	"github.com/JesseSteele/WinstonPress/internal/tax"
 )
 
 func (s *Server) cartID(w http.ResponseWriter, r *http.Request) string {

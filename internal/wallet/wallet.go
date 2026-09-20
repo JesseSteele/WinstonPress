@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PacificDailyTimes/pdt-news/internal/config"
+	"github.com/JesseSteele/WinstonPress/internal/config"
 )
 
 type Row struct {

@@ -1,4 +1,4 @@
-# pdt-news
+# Winston Press
 
 A news CMS in Go. Not WordPress. Path-only **network** when you want a paper plus author blogs; a single-author blog when you don’t.
 
@@ -19,7 +19,7 @@ Subdomain author blogs wait on inkcert.
 
 ## inkMail (enterprise)
 
-On a Verber, `ink install inkmailadmin` is the postfix-maddy agnostic mail panel. For a pdt site, set `domain_lock=` to the paper domain in `/etc/inkmail/conf` so every subdomain of that paper gets an inbox or alias when created. BIMI is `https://${emailTLDURI}/domain.tld/bimi.svg` via `ink set bimi`.
+On a Verber, `ink install inkmailadmin` is the postfix-maddy agnostic mail panel. For a Winston Press site, set `domain_lock=` to the paper domain in `/etc/inkmail/conf` so every subdomain of that paper gets an inbox or alias when created. BIMI is `https://${emailTLDURI}/domain.tld/bimi.svg` via `ink set bimi`.
 
 ## People
 
@@ -107,4 +107,5 @@ go build -o pdt ./cmd/pdt
 
 Packages: [pdt-news-package](https://github.com/PacificDailyTimes/pdt-news-package) (Arch/Debian/RPM). Config: `/etc/pdt/config`, symlinked from `/srv/www/pdt/config`. Nginx: `contrib/nginx/pdt.conf`. Installer: `contrib/pdt-install` (`--webroot` sets destination; interactive does not ask for it).
 
-On Verb the machine name is `vapps/pdt.DOMAIN.TLD`; the public host is the domain itself. BIMI is served at `https://domain.tld/bimi.svg`.
+On Verb the machine name is `vapps/winstonpress.DOMAIN.TLD`; the public host is the domain itself. BIMI is served at `https://domain.tld/bimi.svg`.
+`ink install winstonpress -d domain.tld`.

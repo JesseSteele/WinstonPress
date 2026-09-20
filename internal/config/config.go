@@ -217,7 +217,7 @@ func (c *Config) SetupOK(given string) bool {
 
 func Write(path string, kv map[string]string) error {
 	var b strings.Builder
-	b.WriteString("# pdt-news config — generated\n")
+	b.WriteString("# Winston Press config — generated\n")
 	keys := []string{
 		"web_bind", "web_port", "web_url",
 		"db_host", "db_port", "db_name", "db_user", "db_pass",
